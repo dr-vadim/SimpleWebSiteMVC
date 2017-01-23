@@ -48,7 +48,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter{
         driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
         driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/usersdao");
         driverManagerDataSource.setUsername("postgres");
-        driverManagerDataSource.setPassword("13311133");
+        driverManagerDataSource.setPassword("qwerty123");
         return driverManagerDataSource;
     }
 }

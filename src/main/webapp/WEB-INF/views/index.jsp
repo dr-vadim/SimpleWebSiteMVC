@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <html>
     <head>
         <title>${Title}</title>
@@ -13,48 +14,33 @@
     </head>
     <body>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div id="myMaodal-alerts">
-                <div class="alert alert-success success-add alert-dismissible top-right" style="display: none;" role="alert">
-                    <strong>Success!</strong> Новый пользователь успешно добавлен!
-                </div>
-                <div class="alert alert-success success-update alert-dismissible top-right" style="display: none;" role="alert">
-                    <strong>Success!</strong> Данные пользователя успешно обновлены!
-                </div>
-                <div class="alert alert-danger err-add alert-dismissible top-right" style="display: none;" role="alert">
-                    <strong>Error!</strong> Не получилось добавить нового пользователя!
-                </div>
-                <div class="alert alert-danger err-update alert-dismissible top-right" style="display: none;" role="alert">
-                    <strong>Error!</strong> Не удалось обновить данные!
-                </div>
-            </div>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Добавить/Редактировать пользователя</h4>
+                        <h4 class="modal-title">Добавить пользователя</h4>
                     </div>
-                    <form class="form-horizontal" method="post" action="/add">
+                    <f:form modelAttribute="userForm" class="form-horizontal" method="post" action="/user">
+                        <input id="form-action-method" type="hidden" name="_method" value="PUT" />
                         <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="inputUsername" class="col-sm-2 control-label">Имя:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="name" class="form-control" id="inputUsername" placeholder="Username" />
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputUsername" class="col-sm-2 control-label">Имя:</label>
+                                <div class="col-sm-10">
+                                    <f:input path="name" type="text" name="name" class="form-control" id="inputUsername" placeholder="Username" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="inputAge" class="col-sm-2 control-label">Возраст:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="age" class="form-control" id="inputAge" placeholder="Age" />
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAge" class="col-sm-2 control-label">Возраст:</label>
+                                <div class="col-sm-10">
+                                    <f:input path="age"  type="text" name="age" class="form-control" id="inputAge" placeholder="Age" />
                                 </div>
-
+                            </div>
                         </div>
-                        <input type="hidden" name="id-value" value="" />
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                            <button type="button" onclick="saveUser(this)" class="btn btn-primary">Сохранить</button>
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
                         </div>
-                    </form>
+                    </f:form>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
@@ -72,7 +58,7 @@
                         <!-- Default panel contents -->
                         <div class="panel-heading">Пользователи</div>
                         <!-- Table -->
-                        <table class="table table-bordered" id="usersTable">
+                        <table class="table table-bordered">
                             <tr>
                                 <th>#</th>
                                 <th>Имя</th>
@@ -81,19 +67,22 @@
                             </tr>
                             <c:forEach var="user" items="${userList}">
                             <tr class="tr-${user.getId()}">
-                                <td>${user.getId()}</td>
-                                <td>${user.getName()}</td>
-                                <td>${user.getAge()}</td>
+                                <td><a href="/user/${user.getId()}">${user.getId()}</a></td>
+                                <td><a href="/user/${user.getId()}">${user.getName()}</a></td>
+                                <td><a href="/user/${user.getId()}">${user.getAge()}</a></td>
                                 <td>
-                                    <a href="/auto?userId=${user.getId()}" role="button" class="btn btn-primary btn-sm">
+                                    <a href="/user/${user.getId()}/autos" role="button" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Авто
                                     </a>
-                                    <button data-id="${user.getId()}" type="button" class="btn btn-primary btn-sm remove-btn">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить
-                                    </button>
-                                    <button data-id="${user.getId()}" type="button" class="btn btn-primary btn-sm edit-btn">
+                                    <form action="/user/${user.getId()}" method="post">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить
+                                        </button>
+                                    </form>
+                                    <a href="/user/${user.getId()}" role="button" class="btn btn-primary btn-sm">
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Редактировать
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                             </c:forEach>

@@ -31,7 +31,7 @@ public class Auto {
         this.user = builder.user;
     }
 
-    public class Builder{
+    public static class Builder{
         int id;
         String model;
         String color;

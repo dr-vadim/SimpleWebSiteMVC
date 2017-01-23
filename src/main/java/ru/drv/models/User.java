@@ -34,7 +34,7 @@ public class User {
         this.auto = builder.auto;
     }
 
-    public class Builder{
+    public static class Builder{
         private int id;
         private String name;
         private int age;
