@@ -4,6 +4,7 @@
 <html>
     <head>
         <title>${Title}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/static/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/static/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
         <link rel="stylesheet/less" type="text/css" href="/static/css/style.less" />

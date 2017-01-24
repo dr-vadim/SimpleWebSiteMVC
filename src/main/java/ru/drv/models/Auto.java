@@ -66,6 +66,10 @@ public class Auto {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getModel() {
         return model;
     }
@@ -88,5 +92,15 @@ public class Auto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Auto{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", user=null"+
+                '}';
     }
 }

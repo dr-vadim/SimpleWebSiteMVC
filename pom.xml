@@ -10,6 +10,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.jquery>3.1.1</version.jquery>
     <version.bootstrap>3.3.7</version.bootstrap>
     <version.less>2.5.3</version.less>

@@ -29,7 +29,7 @@ public class AutoDaoImpl implements AutoDao {
     //language=HQL
     private final String HQL_SELECT_AUTO_BY_ID = "from Auto a where a.id=:id";
     //language=SQL
-    private final String SQL_INSER_AUTO = "INSERT INTO auto(model,color) VALUES (:model,:color)";
+    private final String SQL_INSER_AUTO = "INSERT INTO auto(model,color,user_id) VALUES (:model,:color,:userId)";
     //language=SQL
     private final String SQL_DELETE_AUTO = "DELETE FROM auto WHERE id=:id";
     //language=SQL
@@ -72,6 +72,7 @@ public class AutoDaoImpl implements AutoDao {
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("model", item.getModel());
         map.addValue("color", item.getColor());
+        map.addValue("userId", item.getUser().getId());
         template.update(SQL_INSER_AUTO,map,keyHolder, new String[] {"id"});
         int id = keyHolder.getKey().intValue();
         return new Auto.Builder().setId(id).setModel(item.getModel()).setColor(item.getColor()).build();

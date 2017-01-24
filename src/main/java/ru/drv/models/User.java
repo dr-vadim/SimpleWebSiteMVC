@@ -74,6 +74,10 @@ public class User {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -96,5 +100,15 @@ public class User {
 
     public void setAuto(List<Auto> auto) {
         this.auto = auto;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", auto=" + auto +
+                '}';
     }
 }

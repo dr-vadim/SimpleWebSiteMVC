@@ -48,13 +48,13 @@ public class UsersController{
     }
 
     @PostMapping("/user")
-    public String updateUser(@ModelAttribute("userForm") User user){
+    public String update(@ModelAttribute("userForm") User user){
         userService.update(user.getId(),user);
         return "redirect:/user/"+user.getId();
     }
 
     @PutMapping("/user")
-    String addUser(@ModelAttribute("userForm") User user){
+    String add(@ModelAttribute("userForm") User user){
         System.out.println("addUser");
         User userSaved = userService.save(user);
         System.out.println("id: "+userSaved.getId());
@@ -62,7 +62,7 @@ public class UsersController{
     }
 
     @DeleteMapping("/user/{user-id}")
-    String deleteUser(@PathVariable("user-id") int id){
+    String delete(@PathVariable("user-id") int id){
         userService.delete(id);
         return "redirect:/users";
     }

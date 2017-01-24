@@ -4,6 +4,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -20,6 +21,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
         registerHiddenFieldFilter(servletContext);
+        characterEncodingFilter(servletContext);
     }
 
     private AnnotationConfigWebApplicationContext getContext(){
@@ -30,5 +32,10 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+    }
+
+    private void characterEncodingFilter(ServletContext context){
+        context.addFilter("characterEncodingFilter", new CharacterEncodingFilter("UTF-8", true))
+                .addMappingForUrlPatterns(null, true, "/*");
     }
 }

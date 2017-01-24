@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>${Title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
     <link rel="stylesheet/less" type="text/css" href="/static/css/style.less" />
@@ -20,7 +21,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Добавить машину</h4>
             </div>
-            <f:form class="form-horizontal" method="post" action="/auto">
+            <f:form class="form-horizontal" method="post" action="/user/${user.getId()}/auto" modelAttribute="autoForm">
                 <input type="hidden" name="_method" value="PUT" />
                 <div class="modal-body">
                     <div class="form-group">
@@ -37,7 +38,6 @@
                     </div>
 
                 </div>
-                <f:input path="user_id" type="hidden" name="user_id" value="${user.getId()}" />
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -77,9 +77,9 @@
                             <td>${auto.getModel()}</td>
                             <td>${auto.getColor()}</td>
                             <td>
-                                <form action="/auto/${auto.getId()}" method="post">
+                                <form action="/user/${user.getId()}/auto/${auto.getId()}" method="post">
                                     <input id="form-action-method" type="hidden" name="_method" value="DELETE" />
-                                    <button type="button" class="btn btn-primary btn-sm remove-btn">
+                                    <button type="submit" class="btn btn-primary btn-sm remove-btn">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Удалить
                                     </button>
                                 </form>
