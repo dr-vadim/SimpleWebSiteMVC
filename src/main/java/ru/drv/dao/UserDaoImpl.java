@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     //language=HQL
     private final String HQL_SELECT_USER_BY_ID = "from User u where u.id=:id";
     //language=SQL
-    private final String SQL_INSERT_USER = "INSERT INTO group_users(name,age) VALUES (?,?)";
+    private final String SQL_INSERT_USER = "INSERT INTO group_users(name,age) VALUES (:name,:age)";
     //language=SQL
     private final String SQL_DELETE_USER = "DELETE FROM group_users WHERE id=:id";
     //language=SQL

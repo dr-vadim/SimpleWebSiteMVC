@@ -82,7 +82,7 @@ public class AutoController{
         auto.setUser(user);
         Auto autoSaved = autoService.save(auto);
         System.out.println("id: "+autoSaved.getId());
-        return "redirect:/auto/"+autoSaved.getId();
+        return "redirect:/user/"+user.getId()+"/autos";
     }
 
     @DeleteMapping("/user/{user-id}/auto/{auto-id}")

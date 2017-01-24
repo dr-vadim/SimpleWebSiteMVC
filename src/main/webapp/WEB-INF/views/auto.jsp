@@ -17,6 +17,9 @@
 </head>
 <body>
 <div class="container main-container">
+    <a href="/user/${user.getId()}/autos" role="button" class="btn btn-primary btn-sm">
+        Назад
+    </a>
     <f:form method="post" action="/user/${user.getId()}/auto" modelAttribute="autoForm">
         <f:input path="id" type="hidden" />
         <div class="form-group">

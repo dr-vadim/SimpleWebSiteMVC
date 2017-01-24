@@ -49,6 +49,7 @@ public class UsersController{
 
     @PostMapping("/user")
     public String update(@ModelAttribute("userForm") User user){
+        System.out.println(user);
         userService.update(user.getId(),user);
         return "redirect:/user/"+user.getId();
     }
@@ -58,7 +59,7 @@ public class UsersController{
         System.out.println("addUser");
         User userSaved = userService.save(user);
         System.out.println("id: "+userSaved.getId());
-        return "redirect:/user/"+userSaved.getId();
+        return "redirect:/users";
     }
 
     @DeleteMapping("/user/{user-id}")

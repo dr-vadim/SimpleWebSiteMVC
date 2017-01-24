@@ -17,7 +17,10 @@
     </head>
     <body>
         <div class="container main-container">
-            <f:form method="post" action="user" modelAttribute="userForm">
+            <a href="/" role="button" class="btn btn-primary btn-sm">
+                Назад
+            </a>
+            <f:form method="post" action="/user" modelAttribute="userForm">
                 <f:input type="hidden" path="id" />
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Имя:</label>
